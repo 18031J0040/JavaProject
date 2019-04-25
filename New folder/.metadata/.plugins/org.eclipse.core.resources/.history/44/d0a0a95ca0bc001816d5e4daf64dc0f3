@@ -1,0 +1,35 @@
+package serialization;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+
+public class DirDeserialization {
+
+	@SuppressWarnings({ "unchecked" })
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		ArrayList<String> arraylist= new ArrayList<String>();
+		try
+        {
+            FileInputStream fis = new FileInputStream("book.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            arraylist = (ArrayList<String>) ois.readObject();
+            ois.close();
+            fis.close();
+         }catch(IOException ioe){
+             ioe.printStackTrace();
+             return;
+          }catch(ClassNotFoundException c){
+             System.out.println("Class not found");
+             c.printStackTrace();
+             return;
+          }
+        for(String tmp: arraylist){
+            System.out.println(tmp);
+        }
+
+	}
+
+}

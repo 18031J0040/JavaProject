@@ -1,0 +1,34 @@
+package serialization;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+public class Directory {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+   boolean f=new File("library").mkdir();
+   File ff=new File("library/book.txt");
+   ff.createNewFile();
+   Books b = new Books();
+   ArrayList<String> al=new ArrayList<String>();
+   al.add("java");
+   al.add("c");
+   al.add("dbms");
+   
+   try {
+       FileOutputStream fileOut =new FileOutputStream("book.txt");
+       ObjectOutputStream out = new ObjectOutputStream(fileOut);
+       out.writeObject(e);
+       out.close();
+       fileOut.close();
+       System.out.printf("Serialized data is saved in book.txt");
+    } catch (IOException i) {
+       i.printStackTrace();
+    }
+	}
+
+}

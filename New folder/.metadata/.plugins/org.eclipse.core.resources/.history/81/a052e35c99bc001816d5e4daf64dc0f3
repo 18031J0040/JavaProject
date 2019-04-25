@@ -1,0 +1,16 @@
+package serialization;
+
+import java.io.Serializable;
+
+public class Employee implements Serializable {
+	
+		String name;
+		String address;
+		int SSN;
+		int number;	
+		public void mailCheck() {
+		      System.out.println("Mailing a check to " + name + " " + address);
+		   }
+		}
+	
+}

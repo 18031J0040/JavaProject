@@ -1,0 +1,12 @@
+package ProjectMain;
+
+import java.util.Date;
+
+public class DateTimeDispaly {
+	public void date()
+	{
+	Date date=new Date();
+	System.out.println(date);
+}
+}
+ 

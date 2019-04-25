@@ -1,0 +1,173 @@
+package ProjectMain;
+
+import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class LoginDetails extends Profile
+{
+	public LoginDetails(MainAccount maa) {
+		super(maa);
+		// TODO Auto-generated constructor stub
+	}
+	String ln;
+	String ps;
+	String ac;
+	public void details() throws ClassNotFoundException, IOException
+	{
+	@SuppressWarnings("resource")
+	Scanner s=new Scanner(System.in);
+	   ArrayList<Profile> a =new ArrayList<Profile>();
+	   try {
+	       FileInputStream fileOut =new FileInputStream("LoginDetails1.txt");
+	       ObjectInputStream in = new ObjectInputStream(fileOut);
+	       a=(ArrayList<Profile>) in.readObject();    
+	    } catch (Exception i)
+	   {
+	       i.printStackTrace();
+	       
+	    }
+	      Profile d=new Profile(null,null,null,null,null,null,null);
+	 	  //File file = new File("LoginDetails.txt");
+	 	   	System.out.println("enter your email address: ");
+		    d.emailid=s.next();
+		    System.out.println("enter password:");
+			d.password=s.next();
+	 	  for(int j=0;j<a.size();j++)
+	       {
+          Profile ob=a.get(j);
+          if((ob.emailid).equals(d.emailid))
+		   {
+			    	System.out.println("login succesfull");
+			    	mychoices(d,j);
+			}
+			else
+			    {
+			    	System.out.println("SORRY...!account doesnt exist");
+			    }
+	 	   }
+}
+	
+	private void mychoices(Profile d,int j) throws IOException, ClassNotFoundException 
+	{
+		FileInputStream filein=new FileInputStream("LoginDetails.txt");
+		ObjectInputStream obj1=new ObjectInputStream(filein);
+		ArrayList<Profile> a1=new ArrayList<Profile>(); 
+		a1=(ArrayList<Profile>) obj1.readObject(); 
+		FileOutputStream fileout1=new FileOutputStream("LoginDetails.txt");
+		ObjectOutputStream obj2=new ObjectOutputStream(fileout1);
+		MainAccount maa = null;
+		Scanner s=new Scanner(System.in);
+		System.out.println("\n1.add money \n2.send money \n3.Request money");
+		int choice=s.nextInt();
+		//Account acou=new Account(0);
+		DateTimeDispaly mt=new DateTimeDispaly();
+		MainAccount ma=new MainAccount(0);
+		while(choice==1 || choice==2 || choice==3)
+		{
+		switch(choice)
+		{
+		case 1:Profile p1=new Profile(maa);
+		System.out.println("enter amount to be added");
+		double add=s.nextDouble();
+		ma.credit(add);
+		p1=d;
+		a1.set(j,p1);
+		mt.date();
+		obj2.writeObject(a1);
+		obj2.close();
+		fileout1.close();
+		break;
+		case 2:Profile r=new Profile(maa);
+		System.out.println("enter email address for which amount should be sent");
+		String em2=s.next();
+		int c=0;Profile p4=null;int l=0;
+		for(int k = 0;k<a1.size();k++)
+		{
+			Profile p3=a1.get(k);
+		if((p3.emailid).equals(em2))
+		{
+			c++;
+			p4=p3;
+			l=k;
+			break;
+			
+		}
+			
+		}
+		if(c>0)
+		{
+			System.out.println("enter amount to be sent");
+			double sen=s.nextDouble();
+			d.ma.debit(sen);r=d;a1.set(j,r);
+			p4.ma.credit(sen);	
+		}
+		else
+		{
+			System.out.println("invalid user name ");
+
+		}
+		
+		mt.date();
+		a1.set(l,p4);
+		
+		obj2.writeObject(a1);
+		obj2.close();
+		fileout1.close();
+		break;
+		case 3:
+			Profile o=new Profile(maa);
+		System.out.println("enter amount to be requested");
+		double req=s.nextDouble();
+		ma.debit(req);
+		o=d;
+		a1.remove(d);
+		mt.date();
+		System.out.println("Waiting for the sender to send");
+		System.out.println("Enter the mail of sender: ");
+		String em21=s.next();
+		int c1=0;
+		for(int k = 0;k<a1.size();k++)
+		{
+			Profile uc3=a1.get(k);
+		if((uc3.emailid).equals(em21))
+		{
+			c1++;
+		}
+			
+		}
+		if(c1>0)
+		{
+			System.out.println("Enter amount : ");
+			double dou=s.nextDouble();
+			System.out.println(dou+" amount is requested");
+
+		}
+		else
+		{
+			System.out.println("invalid user name ");
+
+		}
+		System.out.println("present account balance is :"+d.ma.getBalance());
+		a1.add(o);
+		obj2.writeObject(a1);
+		obj2.close();
+		fileout1.close();
+		break;
+		case 4:MainMenu m=new MainMenu();
+		m.show();
+		}
+		System.out.println("\n1.credit\n2.debit\n3.request amount");
+	     choice=s.nextInt();
+		}
+	}
+		
+	}

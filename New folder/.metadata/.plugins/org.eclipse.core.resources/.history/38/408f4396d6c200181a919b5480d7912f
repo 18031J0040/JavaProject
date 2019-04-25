@@ -1,0 +1,36 @@
+package in.msitprogram.jntu.paypal.console;
+
+import java.io.Serializable;
+
+import ProjectMain.MainAccount;
+
+public class Profile implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public String emailid;
+	public String password;
+	public String name;
+	public String phonenum;
+	public String address;
+	public String Type;
+	public String code;
+	MainAccount ma;
+	public Profile(String emailid, String password, String name,String phonenum,String address,String code) {
+		super();
+		this.emailid = emailid;
+		this.password = password;
+		this.name = name;
+		this.phonenum = phonenum;
+		this.address = address;
+		this.code=code;
+	}
+
+	/*@Override
+	public String toString() {
+		return "Profile [emailid=" + emailid + ", password=" + password + ", name=" + name + ",phonenum=" + phonenum + ",address=" + address + "]";
+	}*/
+
+}

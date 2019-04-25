@@ -1,0 +1,10 @@
+package serialization;
+
+public class Employee {
+	
+		String name;
+		String address;
+		int SSN;
+		int number;	
+	
+}

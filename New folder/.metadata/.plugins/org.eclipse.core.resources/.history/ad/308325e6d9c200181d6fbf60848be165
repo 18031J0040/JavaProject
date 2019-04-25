@@ -1,0 +1,11 @@
+package ProjectMain;
+
+import java.sql.Date;
+
+public class DateTimeDispaly {
+	public void date()
+	{
+	Date date=new Date(0);
+	System.out.println(date);
+}
+}

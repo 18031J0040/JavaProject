@@ -1,0 +1,106 @@
+package ProjectMain;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.paypal.Activate;
+
+
+public class Signup 
+{
+	@SuppressWarnings({ "unchecked", "resource" })
+	public void details1() throws IOException, ClassNotFoundException
+		{
+		   Scanner s=new Scanner(System.in);
+		
+		   ArrayList<Profile> a =new ArrayList<Profile>();
+		   try
+		   {
+		   FileInputStream fis = new FileInputStream("LoginDetails.txt");
+           ObjectInputStream ois = new ObjectInputStream(fis);
+        
+           a = (ArrayList<Profile>) ois.readObject();
+           ois.close();
+           fis.close();
+		   }
+		   catch(Exception e)
+		   {
+			   
+		   }
+	       ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("LoginDetails.txt",true));
+	       Profile d=new Profile(null, null, null, null, null,null, null);
+		   	System.out.println("enter your email address: ");
+		    d.emailid=s.next();
+		    int k=0;
+	       for(int j=0;j<a.size();j++)
+	       {
+           Profile ob=a.get(j);
+           System.out.println(ob.emailid+" "+d.emailid);
+           if((ob.emailid).equals(d.emailid))
+		    {
+        	 System.out.println("already emailid is existting");
+        	 k=1;
+        	 break;
+			}
+	       }
+       if(k==0){
+			 System.out.println("continue creating new account");
+			
+			    System.out.println("enter password:");
+				d.password=s.next();
+				System.out.println("enter your name:");
+				d.name=s.next();
+				System.out.println("enter phone number:");
+				d.phonenum=s.next();
+				System.out.println("enter address:");
+				d.address=s.next();  
+				Activate act=new Activate();
+		  		d.code=Activate.getToken(5);
+		  		System.out.println("activation code:"+d.code);
+		  		a.add(d);
+				System.out.println(d.emailid+" "+d.password+" "+d.name+" "+d.phonenum+" "+d.address);
+				System.out.println("enter the activation code:");
+			    Scanner scan=new Scanner(System.in);
+			    String code1=scan.next();
+			    if((code1).equals(d.code))
+			    {
+			    	System.out.println("succesfully signed up");
+			    }
+			    else
+			    {
+			    	System.out.println("invalid code,TRY AGAIN");
+			    	System.exit(0);
+			    }
+			    
+				System.out.println("Choose type of account:");
+		  		System.out.println("1.PERSONAL ACCOUNT\n2.STUDENT ACCOUNT\n3.BUSINESS ACCOUNT\n");
+		  		int n=scan.nextInt();
+		  	
+		  		switch(n)
+		  		{
+		  		case 1:System.out.println("Personal Acoount");
+		  		       Personal p=new Personal(0);
+		  		       d.ma=p;
+		  		       break;
+		  		case 2:System.out.println("Student Account");
+		  		       Student stu=new Student(0);
+		  		       d.ma=stu;
+		  		       break;
+		  		case 3:System.out.println("Business Account");
+		  		       Business bu=new Business(0);
+		  		       d.ma=bu;
+		  			   break;
+		  		}
+			    out.writeObject(a);
+				
+       }
+       }
+       
+}
+
+

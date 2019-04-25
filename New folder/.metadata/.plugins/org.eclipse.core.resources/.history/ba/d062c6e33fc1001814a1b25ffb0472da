@@ -1,0 +1,46 @@
+/*
+ * 
+ */
+package in.msitprogram.jntu.paypal.console;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+/**
+ * @author pg
+ *
+ */
+public class MainMenu {
+	
+	public static void show() throws IOException{
+		//show the welcome message with the main menu options
+		System.out.println("-------***** WELCOME TO PAYPAL *****-------");
+		//take the menu option as input from the console
+		System.out.println("\n1.SIGN UP \n2.LOGIN \n3.DELETE ACCOUNT \n4.EXIT");
+		System.out.println("enter your choice");
+		@SuppressWarnings("resource")
+		Scanner sc=new Scanner(System.in);
+		int n;
+		n=sc.nextInt();
+		switch(n)
+		{
+		case 1:System.out.println("sign up ");
+		Signup s=new Signup();
+		s.details1();
+		break;
+		case 2:System.out.println("login");
+		System.out.println("enter emailid and password which are registered in paypal" );
+		LoginDetails l=new LoginDetails();
+		l.details();
+		break;
+		case 3:System.out.println("delete account");
+		break;
+		case 4:System.out.println("exit");
+		System.exit(0);
+		}
+		//take email address as input from the console
+		
+		//based on the given menu option instantiate the respective screens
+	}
+
+}

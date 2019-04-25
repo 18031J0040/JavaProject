@@ -1,0 +1,107 @@
+package ProjectMain;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class LoginDetails 
+{
+	public void details() throws ClassNotFoundException, IOException
+	{
+	@SuppressWarnings("resource")
+	Scanner s=new Scanner(System.in);
+	   ArrayList<Profile> a =new ArrayList<Profile>();
+	   try {
+	       FileInputStream fileOut =new FileInputStream("LoginDetails.txt");
+	       ObjectInputStream out = new ObjectInputStream(fileOut);
+	       a=(ArrayList<Profile>) out.readObject();    
+	    } catch (Exception i)
+	   {
+	       i.printStackTrace();
+	       
+	    }
+	      Profile d=new Profile(null,null,null,null,null,null);
+	 	  File file = new File("LoginDetails.txt");
+	 	   	System.out.println("enter your email address: ");
+		    d.emailid=s.next();
+		    System.out.println("enter password:");
+			d.password=s.next();
+	 	  for(int j=0;j<a.size();j++)
+	       {
+          Profile ob=a.get(j);
+          if((ob.emailid).equals(d.emailid))
+		   {
+			    	System.out.println("login succesfull");
+			    	mychoices(d);
+			}
+			else
+			    {
+			    	System.out.println("SORRY...!account doesnt exist");
+			    }
+	 	   }
+}
+	
+	private void mychoices(Profile u) throws IOException, ClassNotFoundException 
+	{
+		FileInputStream filein=new FileInputStream("LoginDetails.txt");
+		ObjectInputStream obj1=new ObjectInputStream(filein);
+		FileOutputStream fileout1=new FileOutputStream("LoginDetails.txt");
+		ObjectOutputStream obj2=new ObjectOutputStream(fileout1);
+		ArrayList<Profile> a1=new ArrayList<Profile>(); 
+		a1=(ArrayList<Profile>) obj1.readObject(); 
+		Scanner s=new Scanner(System.in);
+		System.out.println("\n1.add money \n2.send money \n3.Request money");
+		int choice=s.nextInt();
+		//Account acou=new Account(0);
+		DateTimeDispaly mt=new DateTimeDispaly();
+		MainAccount maa=new MainAccount(0);
+		while(choice==1 || choice==2 || choice==3)
+		{
+		switch(choice)
+		{
+		case 1:
+		System.out.println("enter amount to be added");
+		double add=s.nextDouble();
+		maa.credit(add);
+		Profile p1=new Profile(maa);
+		Profile pr=p1;
+		a1.remove(p1);
+		a1.add(pr);
+		mt.date();
+		break;
+		case 2:System.out.println("enter amount to be sent");
+		double sen=s.nextDouble();
+		maa.debit(sen);
+		Profile r=new Profile(maa);
+		Profile pr1=r;
+		a1.remove(r);
+		a1.add(pr1);
+		Profile p2=new Profile(maa);
+		mt.date();
+		break;
+		case 3:System.out.println("enter amount to be requested");
+		double req=s.nextDouble();
+		maa.debit(req);
+		Profile o=new Profile(maa);
+		Profile pr2=o;
+		a1.remove(o);
+		a1.add(pr2);
+		Profile p3=new Profile(maa);
+		mt.date();
+		System.out.println("Waiting for the sender to send");
+		System.out.println("present account balance is :"+u.ma.getBalance());
+		break;
+		}
+		System.out.println("\n1.credit\n2.debit\n3.request amount");
+	     choice=s.nextInt();
+		}
+	}
+		
+	}

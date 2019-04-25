@@ -1,0 +1,78 @@
+1.Database Management system provides
+       a .Efficient data
+       b.Multi-user storage
+       c.Multi-user access
+       d.All the above
+
+answer:d
+
+2.DML means
+       a.Data Modification Language
+       b.Data Manipulation Language
+       c.Data Malfunctioning Language
+       d.Data Multiple Language
+
+answer:b
+
+3.Tables in database are called as 
+       a.Attributes
+       b.Tuples
+       c.Relations
+       d.undefined
+
+answer:c
+
+
+4.Each row in a database is called as
+      a.Attribute
+      b.Tuple
+      c.Relation
+      d.View
+
+answer:a
+
+
+5.Columns in a database is called as
+      a.Attributes
+      b.Tuples
+      c.Relations
+      d.Views
+
+answer:b
+
+
+6.Structural description of relations in database is called as
+     a.Schema
+     b.View
+     c.Instance
+     d.Variable
+
+answer:a
+
+
+7.Unknown or Undefined value in database is represent with
+     a.0
+     b.""
+     c.NULL
+     d.None of the above
+
+answer:c
+
+
+8.What will a query returns 
+     a.Attributes
+     b.Tuples
+     c.Views
+     d.Relations
+
+answer:c
+
+
+9.Which language is used to create relations
+    a.DML
+    b.DDL
+    c.DCL
+    d.DQL
+
+answer:b
+

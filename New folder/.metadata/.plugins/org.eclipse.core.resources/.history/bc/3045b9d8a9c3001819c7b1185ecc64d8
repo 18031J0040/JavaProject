@@ -1,0 +1,36 @@
+package ProjectMain;
+
+import java.io.Serializable;
+
+public class Profile implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public String email;
+	public String password;
+	public String userName;
+    public String phno;
+    public String address;
+    public String Type;
+    public String det;
+    public String code;
+    boolean activation;
+    MainAccount ma;
+    //String da;
+    public  void setaccount(MainAccount a11)
+    {
+    	this.ma=ma;
+    }
+ 
+    public  MainAccount getaccount()
+    {
+    	return this.ma;
+    }
+ 
+public String toString() 
+	{
+		return "\nUser Name :"+this.userName+"\nemail :"+this.email+"\nphno :"+this.phno+"\nAddress :"+this.address+"\nAccount :"+this.Type+"\nACTIVATION code :"+this.code+"\n"+this.a11;
+	}
+}

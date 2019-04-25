@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;CreateAccountPayPal&apos;" deleteContents="true" description="Delete resource &apos;CreateAccountPayPal&apos;" element1="/CreateAccountPayPal" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1537857448884"/>
+</session>

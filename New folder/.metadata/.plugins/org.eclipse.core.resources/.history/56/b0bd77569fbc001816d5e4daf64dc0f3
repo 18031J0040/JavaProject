@@ -1,0 +1,32 @@
+package serialization;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+public class Directory {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+   boolean f=new File("library").mkdir();
+   File ff=new File("library/hi.txt");
+   ff.createNewFile();
+   Employee e = new Employee();
+   e.name = "Divya";
+   e.address = "MSIT, Hyderabad";
+   e.SSN = 1803140;
+   e.number = 40;
+   try {
+       FileOutputStream fileOut =new FileOutputStream("hi.txt");
+       ObjectOutputStream out = new ObjectOutputStream(fileOut);
+       out.writeObject(e);
+       out.close();
+       fileOut.close();
+       System.out.printf("Serialized data is saved in hi.txt");
+    } catch (IOException i) {
+       i.printStackTrace();
+    }
+	}
+
+}

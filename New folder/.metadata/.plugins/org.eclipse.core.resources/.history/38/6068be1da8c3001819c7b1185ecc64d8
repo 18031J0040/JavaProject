@@ -1,0 +1,42 @@
+package ProjectMain;
+
+import java.io.Serializable;
+
+public class Profile implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public String emailid;
+	public String password;
+	public String name;
+	public String phonenum;
+	public String address;
+	public String Type;
+	public String code;
+	MainAccount ma;
+	
+	public Profile(String emailid, String password, String name,String phonenum,String address,String code,MainAccount ma) {
+		
+		this.emailid = emailid;
+		this.password = password;
+		this.name = name;
+		this.phonenum = phonenum;
+		this.address = address;
+		this.code=code;
+	    this.ma=ma;
+		
+	}
+	
+	public Profile(MainAccount maa) {
+		this.ma=ma;
+		// TODO Auto-generated constructor stub
+	}
+
+	/*@Override
+	public String toString() {
+		return "Profile [emailid=" + emailid + ", password=" + password + ", name=" + name + ",phonenum=" + phonenum + ",address=" + address + "]";
+	}*/
+
+}

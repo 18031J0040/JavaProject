@@ -1,0 +1,54 @@
+/*
+ * 
+ */
+package in.msitprogram.jntu.paypal.console;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import in.msitprogram.jntu.paypal.persistance.DataStore;
+
+/**
+ * @author pg
+ *
+ */
+public class MainMenu {
+	
+	public static void show() throws IOException, ClassNotFoundException{
+		//show the welcome message with the main menu options
+		System.out.println("-------***** WELCOME TO PAYPAL *****-------");
+		//take the menu option as input from the console
+		@SuppressWarnings("resource")
+		Scanner sc=new Scanner(System.in);
+		System.out.println("1.signup\n"+"2.login\n"+"3.exit\n");
+		System.out.println("enter Option:");
+		int n=sc.nextInt();
+		sc.nextLine();
+		String email;
+		switch(n)
+		{
+		case 1:
+		  System.out.println("1.SIGNUP");
+		  System.out.println("create your paypal id");
+		  email=sc.nextLine();
+		  if(DataStore.lookupAccount(email)!=null)
+		  {
+			  System.out.println("email id is existed");
+			  MainMenu.show();
+		  }
+		  break;
+		case 2:
+			  System.out.println("2.LOGIN");
+			  System.out.println("Enter your paypal email-id:");
+			  email=sc.nextLine();
+			  DataStore.lookupAccount(email);
+			  break;
+		case 3:
+			  System.out.println("3.EXIT");
+			  System.exit(0);
+			  break;
+		default:System.out.println("option is not available choose diplayed options"); 
+		}
+		}
+
+}

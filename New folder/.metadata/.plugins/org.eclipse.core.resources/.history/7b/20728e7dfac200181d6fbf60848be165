@@ -1,0 +1,85 @@
+package ProjectMain;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class LoginDetails 
+{
+	public void details()
+	{
+	@SuppressWarnings("resource")
+	Scanner s=new Scanner(System.in);
+	   ArrayList<Profile> a =new ArrayList<Profile>();
+	   try {
+	       FileInputStream fileOut =new FileInputStream("LoginDetails.txt");
+	       ObjectInputStream out = new ObjectInputStream(fileOut);
+	       a=(ArrayList<Profile>) out.readObject();    
+	    } catch (Exception i)
+	   {
+	       i.printStackTrace();
+	       
+	    }
+	      Profile d=new Profile(null,null,null,null,null,null, null);
+	 	  File file = new File("LoginDetails.txt");
+	 	   	System.out.println("enter your email address: ");
+		    d.emailid=s.next();
+		    System.out.println("enter password:");
+			d.password=s.next();
+	 	  for(int j=0;j<a.size();j++)
+	       {
+          Profile ob=a.get(j);
+          if((ob.emailid).equals(d.emailid))
+		   {
+			    	System.out.println("login succesfull");
+			    	mychoices(d);
+			}
+			else
+			    {
+			    	System.out.println("SORRY...!account doesnt exist");
+			    }
+	 	   }
+}
+	private void mychoices(Profile u) {
+		Scanner s=new Scanner(System.in);
+		System.out.println("\n1.add money \n2.send money \n3.Request money");
+		int choice=s.nextInt();
+		//Account acou=new Account(0);
+		DateTimeDispaly mt=new DateTimeDispaly();
+		
+		while(choice==1 || choice==2 || choice==3)
+		{
+		switch(choice)
+		{
+		case 1:
+		System.out.println("enter amount to be added");
+		double add=s.nextDouble();
+		u.ma.credit(add);
+		mt.date();
+		
+		
+		break;
+		case 2:System.out.println("enter amount to be sent");
+		double sen=s.nextDouble();
+		u.ma.debit(sen);
+		mt.date();
+	
+		break;
+		case 3:System.out.println("enter amount to be requested");
+		double req=s.nextDouble();
+		mt.date();
+		System.out.println("Waiting for the sender to send");
+		System.out.println("present account balance is :"+u.ma.getBalance());
+		break;
+		}
+		System.out.println("\n1.Signup\n2.login\n3.display");
+	     choice=s.nextInt();
+		}
+	}
+		
+	}

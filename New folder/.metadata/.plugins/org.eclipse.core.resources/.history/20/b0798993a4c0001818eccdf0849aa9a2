@@ -1,0 +1,12 @@
+package in.msitprogram.jntu.paypal.console;
+
+import java.io.Serializable;
+
+public class Details implements Serializable {
+
+	public String emailid;
+	public String password;
+	public String name;
+	public int phonenum;
+	public String address;
+}

@@ -1,0 +1,54 @@
+/*
+ * 
+ */
+package in.msitprogram.jntu.paypal.console;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+/**
+ * @author pg
+ *
+ */
+public class MainMenu {
+	
+	public static void show() throws IOException, ClassNotFoundException{
+		//show the welcome message with the main menu options
+		System.out.println("-------***** WELCOME TO PAYPAL *****-------");
+		//take the menu option as input from the console
+		
+		
+		while(true)
+		{
+			System.out.println("\n1.SIGN UP \n2.LOGIN \n3.EXIT");
+			System.out.println("enter your choice");
+			@SuppressWarnings("resource")
+			Scanner sc=new Scanner(System.in);
+			int n=sc.nextInt();
+		switch(n)
+		{
+		case 1:System.out.println("sign up ");
+		Signup s=new Signup();
+		s.details1();
+		break;
+		case 2:System.out.println("login");
+		LoginDetails l=new LoginDetails();
+		l.details();
+		break;
+		case 3:System.out.println("exit");
+		System.exit(0);
+		break;
+		}
+		/*System.out.println("\n1.SIGN UP \n2.LOGIN \n3.EXIT");
+		System.out.println("enter your choice");
+		
+		 n=sc.nextInt();*/
+		}
+	}
+}
+		//take email address as input from the console
+		
+		//based on the given menu option instantiate the respective screens
+	
+
+

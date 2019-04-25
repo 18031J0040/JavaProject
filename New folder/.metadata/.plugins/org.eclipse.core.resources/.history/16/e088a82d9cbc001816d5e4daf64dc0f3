@@ -1,0 +1,15 @@
+package serialization;
+
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
+public class DirDeserialization {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		ObjectInputStream in =new ObjectInputStream(new FileInputStream("hi.txt"));
+		Employee e =(Employee)in.readObject();
+		in.close();
+	}
+
+}

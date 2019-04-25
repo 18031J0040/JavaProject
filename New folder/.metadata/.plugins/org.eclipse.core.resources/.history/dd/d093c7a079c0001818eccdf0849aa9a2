@@ -1,0 +1,52 @@
+package pc4;
+class Account
+{
+	public double balance;
+public Account(double bal)
+{
+if(bal<0.0)
+{
+	this.balance=0.0;
+	System.out.println("invalid balance");
+}
+else
+{
+	this.balance=bal;
+}
+}
+public void creditAmount(double amount)
+{
+	this.balance=this.balance+amount;
+}
+public void debitAmount(double amount)
+{
+	if(amount<this.balance)
+	{
+		this.balance=this.balance-amount;
+	}
+	else
+	{
+		System.out.println("insufficient amount");	
+	}
+}
+public double getBalance()
+{
+	return this.balance;
+}
+}
+class savingsAccount extends Account
+{
+float intrest;
+public savingsAccount(double balance,float intrest)
+{
+	super(balance);
+	this.intrest=intrest;
+}
+public double calculateIntrest(int months)
+{
+	return((this.balance*this.intrest)/100)*months;//simple intrest
+} 
+}
+public class BankAccount {
+
+}
